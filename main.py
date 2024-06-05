@@ -78,7 +78,7 @@ def get_resume(link):
         tags = [
             tags.text
             for tags in soup.find(attrs={"class": "bloko-tag-list"}).find_all(
-                attrs={"class": "bloko-tag__section_text"}
+                "span", attrs={"class": "bloko-tag__section_text"}
             )
         ]
     except:
@@ -90,11 +90,8 @@ def get_resume(link):
 
 if __name__ == "__main__":
     data = []
-    for a in get_links('python'):
+    for a in get_links("python"):
         data.append(get_resume(a))
         time.sleep(1)
-        with open('data.json', 'w', encoding='utf-8') as f:
+        with open("data.json", "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
-
-        
-
